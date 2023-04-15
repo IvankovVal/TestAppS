@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Card
 import androidx.compose.material.Text
@@ -19,6 +20,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.compose.rememberNavController
 import com.example.testapps.view.navigation.AppNavHost
+import com.example.testapps.view.theme.Bordur
 import com.example.testapps.view.theme.BottomDesk
 import com.example.testapps.view.theme.NewsAppTheme
 import com.example.testapps.viewmodel.NewsViewModel
@@ -37,22 +39,17 @@ class MainActivity : ComponentActivity() {
                 val navController = rememberNavController()
                 val contentResolver = contentResolver//предадим его в функцию регистрации
 
-                ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-                    val (mainCard) = createRefs()
-                    val (menuCard) = createRefs()
+                Column() {
                     Card(
                         modifier = Modifier
-                            .constrainAs(mainCard) {
-                                start.linkTo(parent.start)
-                                end.linkTo(parent.end)
-                                top.linkTo(parent.top)
-                                bottom.linkTo(menuCard.top)
-                            }
+                            .fillMaxWidth()
+                            .weight(12f)
+
                     ) {
 
-                       //объект viewModel закомментировал потому что какие-то проблемы с его созданием из провайдера
+                        //объект viewModel закомментировал потому что какие-то проблемы с его созданием из провайдера
                         AppNavHost(
-                           // vmNews,
+                            // vmNews,
                             navController
                             ,contentResolver
                         )
@@ -61,47 +58,110 @@ class MainActivity : ComponentActivity() {
                     Box(
                         contentAlignment = Alignment.Center,
                         modifier = Modifier
-                            .constrainAs(menuCard) {
-                                start.linkTo(parent.start)
-                                end.linkTo(parent.end)
-                                top.linkTo(mainCard.bottom)
-                                bottom.linkTo(parent.bottom)
-                            }
+
+                            .weight(1f)
                             .background(color = BottomDesk)
                             .fillMaxWidth()
+                            .border(width = 2.dp, color = Bordur)
                     ) {
+                        Row()
+                        {
+                            //Кнопка1Главная
+                            TextButton(
+                                onClick = {
 
-                        //Кнопки
-                        TextButton(
-                            onClick = {
+                                    navController.navigate(route = AppNavHost.Service.route) }
 
-                                navController.navigate(route = AppNavHost.Service.route) }
-
-                        )
-                    {
-                            Text(text = "СЕРВИС",
-                                fontSize = 42.sp,
-                                modifier = Modifier.padding(24.dp)
                             )
+                            {
+                                Text(text = "Главная",
+                                    fontSize = 12.sp,
+                                    modifier = Modifier.padding(8.dp)
+                                )
+                            }
+                            //Конец
+                            //Кнопка2Услуги
+                            TextButton(
+                                onClick = {
+
+                                    navController.navigate(route = AppNavHost.Service.route) }
+
+                            )
+                            {
+                                Text(text = "Услуги",
+                                    fontSize = 12.sp,
+                                    modifier = Modifier.padding(8.dp)
+                                )
+                            }
+                            //Конец
+                            //Кнопка3Чат
+                            TextButton(
+                                onClick = {
+
+                                    navController.navigate(route = AppNavHost.Service.route) }
+
+                            )
+                            {
+                                Text(text = "Чат",
+                                    fontSize = 12.sp,
+                                    modifier = Modifier.padding(8.dp)
+                                )
+                            }
+                            //Конец
+                            //Кнопка4Блог
+                            TextButton(
+                                onClick = {
+
+                                    navController.navigate(route = AppNavHost.Service.route) }
+
+                            )
+                            {
+                                Text(text = "Блог",
+                                    fontSize = 12.sp,
+                                    modifier = Modifier.padding(8.dp)
+                                )
+                            }
+                            //Конец
+                            //Кнопка5Профиль
+                            TextButton(
+                                onClick = {
+
+                                    navController.navigate(route = AppNavHost.Service.route) }
+
+                            )
+                            {
+                                Text(text = "Профиль",
+                                    fontSize = 12.sp,
+                                    modifier = Modifier.padding(8.dp)
+                                )
+                            }
+                            //Конец
+
                         }
 
-                       }
+
+
                     }
+//_________________
+                }
+
+
+                   }
 
                 }
             }
         }
-    }
 
 
 
 
 
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    NewsAppTheme {
-        ("Android")
-    }
-}
+
+//@Preview(showBackground = true)
+//@Composable
+//fun DefaultPreview() {
+//    NewsAppTheme {
+//        ("Android")
+//    }
+//}

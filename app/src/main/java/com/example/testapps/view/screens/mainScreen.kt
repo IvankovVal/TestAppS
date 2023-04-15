@@ -1,7 +1,9 @@
 package com.example.testapps.view.screens
 
+import androidx.compose.foundation.layout.Column
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
@@ -14,7 +16,10 @@ fun MainScreen (
     navController: NavHostController,
    // viewModel: NewsViewModel,
 ){
-    Text(text = "Главный экран")
+    Column {
+        Text(text = "Самый главный экран")
+
+    }
 }
 @Preview
 @Composable
