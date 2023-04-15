@@ -33,13 +33,20 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            //---------------------------------
             NewsAppTheme {
 
-               // val vmNews = ViewModelProvider(this)[NewsViewModel::class]
+                // val vmNews = ViewModelProvider(this)[NewsViewModel::class]
                 val navController = rememberNavController()
-                val contentResolver = contentResolver//предадим его в функцию регистрации
+                val contentResolver = contentResolver//передадим его в функцию регистрации
 
                 Column() {
+                    //объект viewModel закомментировал потому что какие-то проблемы с его созданием из провайдера
+                    AppNavHost(
+                        // vmNews,
+                        navController
+                        ,contentResolver
+                    )
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -47,12 +54,7 @@ class MainActivity : ComponentActivity() {
 
                     ) {
 
-                        //объект viewModel закомментировал потому что какие-то проблемы с его созданием из провайдера
-                        AppNavHost(
-                            // vmNews,
-                            navController
-                            ,contentResolver
-                        )
+
                     }
 // Карточка для нижней навигации
                     Box(
@@ -66,12 +68,10 @@ class MainActivity : ComponentActivity() {
                     ) {
                         Row()
                         {
-                            //Кнопка1Главная
+//Кнопка1Главная------------------------------------------------------------------------------------
                             TextButton(
                                 onClick = {
-
-                                    navController.navigate(route = AppNavHost.Service.route) }
-
+                                    navController.navigate(route = AppNavHost.Main.route) }
                             )
                             {
                                 Text(text = "Главная",
@@ -79,13 +79,10 @@ class MainActivity : ComponentActivity() {
                                     modifier = Modifier.padding(8.dp)
                                 )
                             }
-                            //Конец
-                            //Кнопка2Услуги
+//Конец---------------------------------------------------------------------------------------------
+//Кнопка2Услуги-------------------------------------------------------------------------------------
                             TextButton(
-                                onClick = {
-
-                                    navController.navigate(route = AppNavHost.Service.route) }
-
+                                onClick = {navController.navigate(route = AppNavHost.Service.route) }
                             )
                             {
                                 Text(text = "Услуги",
@@ -93,13 +90,11 @@ class MainActivity : ComponentActivity() {
                                     modifier = Modifier.padding(8.dp)
                                 )
                             }
-                            //Конец
-                            //Кнопка3Чат
+//Конец---------------------------------------------------------------------------------------------
+//Кнопка3Чат----------------------------------------------------------------------------------------
                             TextButton(
                                 onClick = {
-
-                                    navController.navigate(route = AppNavHost.Service.route) }
-
+                                    navController.navigate(route = AppNavHost.Chat.route) }
                             )
                             {
                                 Text(text = "Чат",
@@ -107,12 +102,12 @@ class MainActivity : ComponentActivity() {
                                     modifier = Modifier.padding(8.dp)
                                 )
                             }
-                            //Конец
-                            //Кнопка4Блог
+//Конец---------------------------------------------------------------------------------------------
+//Кнопка4Блог---------------------------------------------------------------------------------------
                             TextButton(
                                 onClick = {
 
-                                    navController.navigate(route = AppNavHost.Service.route) }
+                                    navController.navigate(route = AppNavHost.Blog.route) }
 
                             )
                             {
@@ -121,13 +116,10 @@ class MainActivity : ComponentActivity() {
                                     modifier = Modifier.padding(8.dp)
                                 )
                             }
-                            //Конец
-                            //Кнопка5Профиль
+//Конец---------------------------------------------------------------------------------------------
+//Кнопка5Профиль------------------------------------------------------------------------------------
                             TextButton(
-                                onClick = {
-
-                                    navController.navigate(route = AppNavHost.Service.route) }
-
+                                onClick = {navController.navigate(route = AppNavHost.Profile.route) }
                             )
                             {
                                 Text(text = "Профиль",
@@ -135,21 +127,17 @@ class MainActivity : ComponentActivity() {
                                     modifier = Modifier.padding(8.dp)
                                 )
                             }
-                            //Конец
-
+//Конец---------------------------------------------------------------------------------------------
                         }
-
-
-
                     }
 //_________________
                 }
-
-
-                   }
-
-                }
             }
+        }
+
+
+
+    }
         }
 
 
